@@ -781,7 +781,8 @@ function v4aEdits(lines: string[], strict: boolean): Edit[] {
         const bl = body[k]!;
         const ln = i + 2 + k;
         if (bl.startsWith('@@')) {
-          cur = { anchor: bl.slice(2).trim(), o: [], n: [], eof: false };
+          const anchorText = bl.slice(2).trim();
+          cur = { anchor: anchorText === '' ? null : anchorText, o: [], n: [], eof: false };
           chunks.push(cur);
           firstChunk = false;
           continue;
